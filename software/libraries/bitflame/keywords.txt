@@ -1,0 +1,10 @@
+Bitflame	KEYWORD1
+init	KEYWORD2
+next	KEYWORD2
+getValue	KEYWORD2
+getBitflameHeat	KEYWORD2
+setBitflameHeat	KEYWORD2
+getBitflameOxy	KEYWORD2
+setBitflameOxy	KEYWORD2
+getBitflameCinder	KEYWORD2
+setBitflameCinder	KEYWORD2
