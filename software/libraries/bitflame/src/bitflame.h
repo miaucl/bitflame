@@ -34,19 +34,20 @@ template <int HEIGHT, int WIDTH>
 class Bitflame
 {
 private:
+
   /**
    * The matrix with the values
    */
-  double mat[HEIGHT][WIDTH] = { 0 };
+  boolean mat[HEIGHT][WIDTH] = { 0 };
 
   /**
    * The heat parameter
    */
   double heat = 0.2;
   /**
-   * The oxygen parameter
+   * The CO2gen parameter
    */
-  double oxy = 0.002;
+  double CO2 = 0.002;
   /**
    * The cinder parameter
    */
@@ -70,14 +71,14 @@ public:
   void setBitflameHeat(double _heat);
 
   /**
-   * Get oxy parameter
+   * Get CO2 parameter
    */
-  double getBitflameOxy();
+  double getBitflameCO2();
 
   /**
-   * Set oxy parameter ">=0"
+   * Set CO2 parameter ">=0"
    */
-  void setBitflameOxy(double oxy);
+  void setBitflameCO2(double CO2);
 
   /**
    * Get cinder parameter
@@ -103,7 +104,12 @@ public:
   /**
    * Get a value at a certain position
    */
-  double getValue(int y, int x);
+  boolean getValue(int y, int x);
+
+  /**
+   * Get a faded value at a certain position
+   */
+  double getFadedValue(int y, int x);
 
 };
 

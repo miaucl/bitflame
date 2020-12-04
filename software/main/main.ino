@@ -1,17 +1,21 @@
 #include "bitflame.h"
+#include <MdLep16X16.h>
 
-#define WIDTH 10
-#define HEIGHT 10
+#define WIDTH 16
+#define HEIGHT 16
 
 #define HEAT 0.2f
-#define OXY 0.02f
-#define CINDER 1
+#define CO2 0.015f
+#define CINDER 2
 
-#define MONITOR_LINE_HEIGHT 60 // Change this value if you see the old images scrolling up
-
-#define PERIOD 200 //ms
+#define PERIOD 100 //ms
 
 Bitflame<HEIGHT, WIDTH> bitflame;
+
+MdLep16X16 mdLep(0xFF, 0xFF, 0xFF, 0xFF);
+
+
+uint16_t screen[16] = { 0 };
 
 // Last timestamp
 long t = 0;
@@ -19,64 +23,68 @@ long t = 0;
 void setup() 
 {
   Serial.begin(9600);
-
-  while (!Serial) { ; /* wait for serial port to connect. Needed for native USB port only */ }
   
-  Serial.println("Initialize <bitflame> example…");
-
   // Set parameters
   bitflame.setBitflameHeat(HEAT);
-  bitflame.setBitflameOxy(OXY);
+  bitflame.setBitflameCO2(CO2);
   bitflame.setBitflameCinder(CINDER);
-  Serial.println("Parameters:");
-  Serial.print("\t HEAT: ");
-  Serial.println(bitflame.getBitflameHeat(), 4);
-  Serial.print("\t OXY: ");
-  Serial.println(bitflame.getBitflameOxy(), 4);
-  Serial.print("\t CINDER: ");
-  Serial.println(bitflame.getBitflameCinder());
 
   // Init matrix
   bitflame.init();
-  Serial.println("Size:");
-  Serial.print("\t HEIGHT: ");
-  Serial.println(HEIGHT);
-  Serial.print("\t WIDTH: ");
-  Serial.println(WIDTH);
+
+
+  // Init LED Matrix
+  mdLep.init();
+  delay(100);
+  mdLep.displayOn();
+  mdLep.invertOff();
+  mdLep.mirrorOn();
+  delay(100);
+  mdLep.turnOff();
+  delay(100);
+  mdLep.fillGram(0xFF);
+  delay(100);
+
+  // Init led 13
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
 
   // Ready
-  while (Serial.available() > 0) Serial.read(); // Flush
-  Serial.println();
-  Serial.println("Ready, waiting for user input to start…");
-  while (Serial.available() == 0) ; // Wait
-  while (Serial.available() > 0) Serial.read(); // Flush
-  Serial.println("Go!");
-  delay(1000);
   printBitflame();
   t = millis();
 }
 
 void printBitflame()
-{
-  for (int i = 0; i<MONITOR_LINE_HEIGHT; i++) Serial.println();
+{  
+  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
   
   for (int y = 0; y<HEIGHT; y++)
   {
+    uint16_t row = 0x0000;
     for (int x = 0; x<WIDTH; x++)
     {
-      Serial.print(bitflame.getValue(y, x) ? "* " : "  ");
+      if (bitflame.getValue(y, x)) 
+      {
+        // Make sure the first byte is at the left and the MSB is (0,0)
+        if (x < WIDTH / 2) row |= (1 << ((WIDTH / 2) - x - 1));
+        else row |= (1 << ((WIDTH * 3 / 2) - x - 1));
+      }
     }
-    Serial.println();
+
+    screen[y] = row;
   }
-  Serial.println();
+
+  // Cast the 16 times 2-byte array to a 32 times 1-byte array.
+  mdLep.loadScreen((byte*) &screen);
 }
+
 
 void loop() 
 {
   bitflame.next();
   printBitflame();
   int d = millis() - t;
-  Serial.print(d); Serial.println(" ms");
+  Serial.println(d);
   if (d < PERIOD) delay(PERIOD - d); // Wait if needed
   t = millis();
 }

@@ -3,3 +3,5 @@ libraries/**
 !libraries/examples/**
 !libraries/bitflame
 !libraries/bitflame/**
+!libraries/UART-Matrix
+!libraries/UART-Matrix/**

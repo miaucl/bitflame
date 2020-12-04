@@ -38,8 +38,8 @@ template <int HEIGHT, int WIDTH> Bitflame<HEIGHT, WIDTH>::Bitflame()
 template <int HEIGHT, int WIDTH> double Bitflame<HEIGHT, WIDTH>::getBitflameHeat() { return this->heat; }
 template <int HEIGHT, int WIDTH> void Bitflame<HEIGHT, WIDTH>::setBitflameHeat(double _heat) { this->heat = _heat; }
 
-template <int HEIGHT, int WIDTH> double Bitflame<HEIGHT, WIDTH>::getBitflameOxy() { return this->oxy; }
-template <int HEIGHT, int WIDTH> void Bitflame<HEIGHT, WIDTH>::setBitflameOxy(double _oxy) { this->oxy = _oxy; }
+template <int HEIGHT, int WIDTH> double Bitflame<HEIGHT, WIDTH>::getBitflameCO2() { return this->CO2; }
+template <int HEIGHT, int WIDTH> void Bitflame<HEIGHT, WIDTH>::setBitflameCO2(double _CO2) { this->CO2 = _CO2; }
 
 template <int HEIGHT, int WIDTH> int Bitflame<HEIGHT, WIDTH>::getBitflameCinder() { return this->cinder; }
 template <int HEIGHT, int WIDTH> void Bitflame<HEIGHT, WIDTH>::setBitflameCinder(int _cinder) { this->cinder = _cinder; }
@@ -74,22 +74,75 @@ template <int HEIGHT, int WIDTH> void Bitflame<HEIGHT, WIDTH>::next()
   {
     for (int x = 0; x<WIDTH; x++)
     {
-      if (x-1 >= 0 && this->mat[y-1][x-1] > 0 && RAND_0_1 < oxy) this->mat[y][x] = 0;
-      if (x-1 >= 0 && this->mat[y  ][x-1] > 0 && RAND_0_1 < oxy) this->mat[y][x] = 0;
-      if (x-1 >= 0 && this->mat[y+1][x-1] > 0 && RAND_0_1 < oxy) this->mat[y][x] = 0;
+      if (x-1 >= 0 && this->mat[y-1][x-1] > 0 && RAND_0_1 < CO2) this->mat[y][x] = 0;
+      if (x-1 >= 0 && this->mat[y  ][x-1] > 0 && RAND_0_1 < CO2) this->mat[y][x] = 0;
+      if (x-1 >= 0 && this->mat[y+1][x-1] > 0 && RAND_0_1 < CO2) this->mat[y][x] = 0;
 
-      if (this->mat[y-1][x] > 0 && RAND_0_1 < oxy) this->mat[y][x] = 0;
-      if (this->mat[y+1][x] > 0 && RAND_0_1 < oxy) this->mat[y][x] = 0;
+      if (this->mat[y-1][x] > 0 && RAND_0_1 < CO2) this->mat[y][x] = 0;
+      if (this->mat[y+1][x] > 0 && RAND_0_1 < CO2) this->mat[y][x] = 0;
 
-      if (x+1 < WIDTH && this->mat[y-1][x+1] > 0 && RAND_0_1 < oxy) this->mat[y][x] = 0;
-      if (x+1 < WIDTH && this->mat[y  ][x+1] > 0 && RAND_0_1 < oxy) this->mat[y][x] = 0;
-      if (x+1 < WIDTH && this->mat[y+1][x+1] > 0 && RAND_0_1 < oxy) this->mat[y][x] = 0;
+      if (x+1 < WIDTH && this->mat[y-1][x+1] > 0 && RAND_0_1 < CO2) this->mat[y][x] = 0;
+      if (x+1 < WIDTH && this->mat[y  ][x+1] > 0 && RAND_0_1 < CO2) this->mat[y][x] = 0;
+      if (x+1 < WIDTH && this->mat[y+1][x+1] > 0 && RAND_0_1 < CO2) this->mat[y][x] = 0;
 
     }
   }
 }
 
-template <int HEIGHT, int WIDTH> double Bitflame<HEIGHT, WIDTH>::getValue(int y, int x)
+template <int HEIGHT, int WIDTH> boolean Bitflame<HEIGHT, WIDTH>::getValue(int y, int x)
 {
   return this->mat[y][x];
+}
+
+template <int HEIGHT, int WIDTH> double Bitflame<HEIGHT, WIDTH>::getFadedValue(int y, int x)
+{
+  // If empty, keep it zero
+  if (!this->mat[y][x]) return 0.0;
+
+  // Else calculate the fade value
+  int a = 0;
+  int v = 0;
+  if (y-1 >= 0)
+  {
+    a++;
+    if (this->mat[y-1][x]) v++;
+
+    if (x-1 >= 0)
+    {
+      a++;
+      if (this->mat[y-1][x-1]) v++;
+    }
+    if (x+1 >= 0)
+    {
+      a++;
+      if (this->mat[y-1][x+1]) v++;
+    }
+  }
+  if (y+1 >= 0)
+  {
+    a++;
+    if (this->mat[y+1][x]) v++;
+
+    if (x-1 >= 0)
+    {
+      a++;
+      if (this->mat[y+1][x-1]) v++;
+    }
+    if (x+1 >= 0)
+    {
+      a++;
+      if (this->mat[y+1][x+1]) v++;
+    }
+  }
+  if (x-1 >= 0)
+  {
+    a++;
+    if (this->mat[y][x-1]) v++;
+  }
+  if (x+1 >= 0)
+  {
+    a++;
+    if (this->mat[y][x+1]) v++;
+  }
+  return ((double)v)/((double)a);
 }
