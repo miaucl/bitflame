@@ -14,7 +14,8 @@ Download and build an example using the standard Arduino IDE. There are 3 differ
 * A _auto_loop_ example which uses the serial console as display.
 * A _16x16_matrix_uart_ example which uses a 16x16 matrix controlled by UART.
 
-### Dependencies
+
+### Dependencies
 
 The dependency `UART-Matrix` in the libraries folder is only needed for the example _16x16_matrix_uart_.
 
@@ -44,7 +45,7 @@ Usually you would like to change the parameters of the instance. Set the _HEAT_,
 #define CINDER 2
 
 bitflame.setBitflameHeat(HEAT);
-bitflame.setBitflameOxy(OXY);
+bitflame.setBitflameCO2(CO2);
 bitflame.setBitflameCinder(CINDER);
 ```
 
@@ -52,7 +53,7 @@ and read it like:
 
 ```c++
 double current_heat = bitflame.getBitflameHeat(HEAT);
-double current_co2 = bitflame.getBitflameOxy(CO2);
+double current_co2 = bitflame.getBitflameCO2(CO2);
 int current_cinder = bitflame.getBitflameCinder(CINDER);
 ```
 
