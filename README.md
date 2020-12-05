@@ -8,25 +8,34 @@ Bitflame has two parts, a simulation written in _python_ `.ipynb` to proof the c
 
 ## Demo
 
-Some demo _GIFs_ create with the _Python_ notebook. You can find all example _GIFs_ in the [media folder](media/examples).
+Some demo _GIFs_ create with the _Python_ notebook and _C++_. You can find all example _GIFs_ in the [media folder](media/examples).
 
-### Slow Flames
+
+### 16x16 Matrix UART (C++)
+
+From examples. _(My 16x16 matrix has some dead pixels, ignore them ;))_
+
+![Real 1](media/examples/real/16x16-matrix-uart.gif)
+
+### GIFs from Simulation (Python)
+
+#### Slow Flames
 
 Standard set of parameters.
 
-![Slow 1 (10x10)](media/examples/slow-flames/fire_heat=0.2_o2=0.05_cinder=2.gif) 
-![Slow 2 (20x20)](media/examples/slow-flames/fire_heat=0.2_o2=0.01_cinder=2.gif) 
+![Slow 1 (10x10)](media/examples/slow-flames/fire_heat=0.2_o2=0.05_cinder=2.gif)
+![Slow 2 (20x20)](media/examples/slow-flames/fire_heat=0.2_o2=0.01_cinder=2.gif)
 ![Slow 3 (40x40)](media/examples/slow-flames/fire_heat=0.2_o2=0.002_cinder=3.gif)
 
-### Fast Flames
+#### Fast Flames
 
 More noise flames, look less alive but give a nervous feeling for afar.
 
-![Fast 1 (10x10)](media/examples/fast-flames/fire_heat=0.4_o2=0.05_cinder=2.gif) 
-![Fast 2 (20x20)](media/examples/fast-flames/fire_heat=0.4_o2=0.05_cinder=3.gif) 
+![Fast 1 (10x10)](media/examples/fast-flames/fire_heat=0.4_o2=0.05_cinder=2.gif)
+![Fast 2 (20x20)](media/examples/fast-flames/fire_heat=0.4_o2=0.05_cinder=3.gif)
 ![Fast 3 (40x40)](media/examples/fast-flames/fire_heat=0.4_o2=0.04_cinder=3.gif)
 
-### Different Sizes
+#### Different Sizes
 
 Display of variations when changing the height with different parameters.
 
@@ -37,7 +46,7 @@ Display of variations when changing the height with different parameters.
 ![Size 5 (50x20)](media/examples/different-sizes/fire_50x20_heat=0.2_o2=0.0015_cinder=3.gif)
 ![Size 6 (60x20)](media/examples/different-sizes/fire_60x20_heat=0.2_o2=0.001_cinder=3.gif)
 
-### Candles
+#### Candles
 
 Small matrices to simulate candles.
 
@@ -46,7 +55,7 @@ Small matrices to simulate candles.
 ![Candle 3 (10x6)](media/examples/candles/fire_10x6_heat=0.2_o2=0.02_cinder=3.gif)
 
 
-### Large
+#### Large
 
 Some large examples with different parameters.
 
@@ -54,11 +63,10 @@ Some large examples with different parameters.
 ![Large 2 (100x100)](media/examples/large-fires/fire_100x100_heat=0.2_o2=0.0008_cinder=3.gif)
 ![Large 3 (100x100)](media/examples/large-fires/fire_100x100_heat=0.2_o2=0.0005_cinder=3.gif)
 
-### Faded
+#### Faded
 
 More detailed and more calculation needed.
 
 ![Faded 1 (40x40)](media/examples/faded-flames/fire_40x40_heat=0.2_o2=0.002_cinder=3.gif)
 ![Faded 2 (100x100)](media/examples/faded-flames/fire_100x100_heat=0.2_o2=0.002_cinder=3.gif)
 ![Faded 3 (120x320)](media/examples/faded-flames/fire_120x320_heat=0.2_o2=0.0008_cinder=3.gif)
-
