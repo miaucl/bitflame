@@ -16,6 +16,8 @@ Some demo _GIFs_ create with the _Python_ notebook and _C++_. You can find all e
 From examples. _(My 16x16 matrix has some dead pixels, ignore them ;))_
 
 ![Real 1](media/examples/real/16x16-matrix-uart.gif)
+![Real 2](media/examples/real/7x15-IS31FL3731-high-flames.gif)
+![Real 3](media/examples/real/7x15-IS31FL3731-large-flames.gif)
 
 ### GIFs from Simulation (Python)
 

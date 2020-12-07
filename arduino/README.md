@@ -8,16 +8,20 @@ For more information about the algorithm itself, please have a look at the _Pyth
 
 ## Setup
 
-Download and build an example using the standard Arduino IDE. There are 3 different examples:
+Download and build an example using the standard Arduino IDE. There are 5 different examples:
 
-* A _step_by_step_ example which uses the serial console as display.
-* A _auto_loop_ example which uses the serial console as display.
-* A _16x16_matrix_uart_ example which uses a 16x16 matrix controlled by UART.
+* A `step_by_step.ino` example which uses the serial console as display.
+* A `auto_loop.ino` example which uses the serial console as display.
+* A `16x16_matrix_uart.ino` example which uses a 16x16 matrix controlled by UART.
+* A `7x15-IS31FL3731-high-flames.ino` example which uses a 7x15 matrix controlled by I2C.
+* A `7x15-IS31FL3731-large-flames.ino` example which uses a 7x15 matrix controlled by I2C.
 
 
 ### Dependencies
 
-The dependency `UART-Matrix` in the libraries folder is only needed for the example _16x16_matrix_uart_.
+* The dependency `UART-Matrix` in the libraries folder is only needed for the example `16x16_matrix_uart.ino`. _(Only available on Github and not on Arduino Libraries)_
+* The dependencies `Adafruit_GFX` and `Adafruit_IS31FL3731` are needed for the example `7x15-IS31FL3731-*-flames.ino`. _(Available on Arduino Libraries)_
+
 
 
 ### Docs
