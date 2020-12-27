@@ -72,3 +72,19 @@ More detailed and more calculation needed.
 ![Faded 1 (40x40)](media/examples/faded-flames/fire_40x40_heat=0.2_o2=0.002_cinder=3.gif)
 ![Faded 2 (100x100)](media/examples/faded-flames/fire_100x100_heat=0.2_o2=0.002_cinder=3.gif)
 ![Faded 3 (120x320)](media/examples/faded-flames/fire_120x320_heat=0.2_o2=0.0008_cinder=3.gif)
+
+***
+
+### Builds
+
+Builds using this library.
+
+#### Fire place
+
+The _C++_ implementation has been used to create a small [Feather](https://www.adafruit.com/feather) powered fire place. The 3D print files are available on [Thingiverse](https://www.thingiverse.com/thing:4698466) together with a list of components used.
+
+![Fire place 1](media/examples/fire-place-build/fire-place-demo-3.gif)
+![Fire place 2](media/examples/fire-place-build/fire-place-on.jpeg)
+![Fire place 3](media/examples/fire-place-build/fire-place-usb-powerbank.jpeg)
+
+[Link to media folder](media/examples/fire-place-build)
